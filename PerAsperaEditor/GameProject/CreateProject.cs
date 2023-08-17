@@ -116,8 +116,10 @@ namespace PerAsperaEditor.GameProject
                 File.Copy(template.IconPath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "Icon.png")));
                 File.Copy(template.ScreenshotPath, Path.GetFullPath(Path.Combine(directoryInfo.FullName, "Screenshot.png")));
 
-                var project = new Project(ProjectName, path);
-                Serializer.ToFile(project, path + $"{ProjectName}" + Project.Extension);
+                var projectXml = File.ReadAllText(template.ProjectFilePath);
+                projectXml = string.Format(projectXml, ProjectName, ProjectPath);
+                var projectPath = Path.GetFullPath(Path.Combine(path, $"{ProjectName}{Project.Extension}"));
+                File.WriteAllText(projectPath, projectXml);
 
                 return path;
 
