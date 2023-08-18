@@ -1,1 +1,11 @@
-<Game z:Id="i1" xmlns="http://schemas.datacontract.org/2004/07/PerAsperaEditor.GameProject" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/"><ProjectName>DefaultNewProject</ProjectName><ProjectPath>C:\Users\roman\Documents\PerAsperaProjects\DefaultNewProject\</ProjectPath><Scenes><Scene z:Id="i2"><Name>DefaultScene</Name><Project z:Ref="i1"/></Scene></Scenes></Game>
+<Game z:Id="i1" xmlns="http://schemas.datacontract.org/2004/07/PerAsperaEditor.GameProject" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+	<ProjectName>{0}</ProjectName>
+	<ProjectPath>{1}</ProjectPath>
+	<Scenes>
+		<Scene z:Id="i2">
+			<IsActive>true</IsActive>
+			<Name>DefaultScene</Name>
+			<Project z:Ref="i1"/>
+		</Scene>
+	</Scenes>
+</Game>

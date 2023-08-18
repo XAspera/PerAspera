@@ -21,13 +21,15 @@ namespace PerAsperaEditor.GameProject
         private void OnCreateButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as CreateProject;
-            var projectPath = viewModel?.CreateProjectFiles(templateListBox.SelectedItem as ProjectTemplate);
+            var projectPath = viewModel.CreateProjectFiles(templateListBox.SelectedItem as ProjectTemplate);
 
             bool dialogResult = false;
             var win = Window.GetWindow(this);
-            if(string.IsNullOrEmpty(projectPath))
+            if(!string.IsNullOrEmpty(projectPath))
             {
                 dialogResult = true;
+                var project = OpenProject.Open(new ProjectData() { Date = DateTime.Now, Project = new Project(viewModel.ProjectName, projectPath) });
+                win.DataContext = project;
             }
             win.DialogResult = dialogResult;
             win.Close(); 

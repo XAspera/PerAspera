@@ -5,16 +5,54 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PerAsperaEditor.GameProject"
              mc:Ignorable="d" Width="800"
+             d:DataContext="{d:DesignInstance Type=local:OpenProject, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <local:OpenProject/>
+    </UserControl.DataContext>
+
     <StackPanel Background="LightCyan">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
-            <ListBox Width="200" Height="250"/>
-            <Border Width="400" Height="250" Margin="5,0,0,0"/>
+            <ListBox Width="600" Height="250"
+             ItemsSource="{Binding Projects}" x:Name="projectsListBox" SelectedIndex="0">
+                <ListBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="35" Width="555" Margin="15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Project.ProjectName}" Grid.Column="0" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Date}" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15"/>
+
+                            <Line x:Name="Separator" X1="0" X2="0" Y1="0" Y2="35" SnapsToDevicePixels="True" Grid.Column="1" Stroke="Black" StrokeThickness="1.5"  HorizontalAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Style.Resources>
+                        <EventSetter Event="MouseDoubleClick" Handler="OnOpenButton_Click"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
-            <Button Content="Open" Width="100" IsDefault="True"/>
+            <Button Content="Open" Width="100" IsDefault="True" Click="OnOpenButton_Click"/>
             <Button Content="Exit" Width="100" Margin="30,0,0,0" IsCancel="True"/>
         </StackPanel>
+
     </StackPanel>
 </UserControl>

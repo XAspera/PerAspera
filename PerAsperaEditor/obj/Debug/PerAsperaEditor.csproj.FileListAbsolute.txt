@@ -30,3 +30,4 @@ D:\PerAspera\PerAsperaEditor\obj\Debug\GameProject\OpenProjectView.g.cs
 D:\PerAspera\PerAsperaEditor\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\PerAspera\PerAsperaEditor\obj\Debug\GameProject\CreateProjectView.baml
 D:\PerAspera\PerAsperaEditor\obj\Debug\GameProject\OpenProjectView.baml
+D:\PerAspera\x64\Debug\PerAsperaEditor.dll.config
