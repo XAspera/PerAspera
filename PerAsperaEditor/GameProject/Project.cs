@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PerAsperaEditor.GameProject
 {
@@ -64,7 +65,55 @@ namespace PerAsperaEditor.GameProject
                 OnPropertyChanged(nameof(Scenes));
 
                 ActiveScene = Scenes.FirstOrDefault(x => x.IsActive);
+
+                AddScene = new RelayCommand<object>(x =>
+                {
+                    AddSceneInternal($"New Scene {Scenes.Count}");
+                    var newScene = Scenes.Last();
+                    var newSceneIndex = Scenes.Count - 1;
+
+                    HistoryAction.Add(new UndoRedoAction(
+                        () => RemoveSceneInternal(newScene),
+                        () => _scenes.Insert(newSceneIndex, newScene),
+                        $"Add Scene: {newScene.Name}"
+                        ));
+                });
+
+                RemoveScene = new RelayCommand<Scene>(x =>
+                {
+                    var sceneIndex = _scenes.IndexOf(x);
+                    RemoveSceneInternal(x);
+
+                    HistoryAction.Add(new UndoRedoAction(
+                        () => _scenes.Insert(sceneIndex, x),
+                        () => RemoveSceneInternal(x),
+                        $"Remove Scene: {x.Name}"
+                        ));
+                }, x => !x.IsActive);
+
+                Undo = new RelayCommand<object>(x => HistoryAction.UndoAction());
+                Redo = new RelayCommand<object>(x => HistoryAction.RedoAction());
             }
+        }
+
+        public static HistoryAction HistoryAction { get; } = new HistoryAction();
+
+        public ICommand Undo { get; private set; }
+        public ICommand Redo { get; private set; }
+
+        public ICommand AddScene { get; private set; }
+        public ICommand RemoveScene { get; private set; }
+
+        public void AddSceneInternal(string sceneName)
+        {
+            Debug.Assert(!string.IsNullOrEmpty(sceneName));
+            _scenes.Add(new Scene(this, sceneName));
+        }
+
+        public void RemoveSceneInternal(Scene scene)
+        {
+            Debug.Assert(scene != null && _scenes.Contains(scene));  
+            _scenes.Remove(scene);
         }
 
         public Project(string name, string path)

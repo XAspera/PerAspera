@@ -31,3 +31,9 @@ D:\PerAspera\PerAsperaEditor\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\PerAspera\PerAsperaEditor\obj\Debug\GameProject\CreateProjectView.baml
 D:\PerAspera\PerAsperaEditor\obj\Debug\GameProject\OpenProjectView.baml
 D:\PerAspera\x64\Debug\PerAsperaEditor.dll.config
+D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\WorldEditorView.g.cs
+D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\WorldEditorView.baml
+D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\ProjectLayoutView.g.cs
+D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\ProjectLayoutView.baml
+D:\PerAspera\PerAsperaEditor\obj\Debug\Utilities\HistoryActionView.g.cs
+D:\PerAspera\PerAsperaEditor\obj\Debug\Utilities\HistoryActionView.baml
