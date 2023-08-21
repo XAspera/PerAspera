@@ -32,8 +32,9 @@ namespace PerAsperaEditor.GameProject
         public Scene ActiveScene
         {
             get => _activeScene;
-            set { 
-                if(_activeScene != value)
+            set
+            {
+                if (_activeScene != value)
                 {
                     _activeScene = value;
                     OnPropertyChanged(nameof(ActiveScene));
@@ -59,43 +60,43 @@ namespace PerAsperaEditor.GameProject
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            if(_scenes != null)
+            if (_scenes != null)
             {
                 Scenes = new ReadOnlyObservableCollection<Scene>(_scenes);
                 OnPropertyChanged(nameof(Scenes));
-
-                ActiveScene = Scenes.FirstOrDefault(x => x.IsActive);
-
-                AddSceneCommand = new RelayCommand<object>(x =>
-                {
-                    AddScene($"New Scene {Scenes.Count}");
-                    var newScene = Scenes.Last();
-                    var newSceneIndex = Scenes.Count - 1;
-
-                    HistoryAction.Add(new UndoRedoAction(
-                        () => RemoveScene(newScene),
-                        () => _scenes.Insert(newSceneIndex, newScene),
-                        $"Add Scene: {newScene.Name}"
-                        ));
-                });
-
-                RemoveSceneCommand = new RelayCommand<Scene>(x =>
-                {
-                    var sceneIndex = _scenes.IndexOf(x);
-                    RemoveScene(x);
-
-                    HistoryAction.Add(new UndoRedoAction(
-                        () => _scenes.Insert(sceneIndex, x),
-                        () => RemoveScene(x),
-                        $"Remove Scene: {x.Name}"
-                        ));
-                }, x => !x.IsActive);
-
-                UndoCommand = new RelayCommand<object>(x => HistoryAction.UndoAction());
-                RedoCommand = new RelayCommand<object>(x => HistoryAction.RedoAction());
-
-                SaveCommand = new RelayCommand<object>(x => Save(this));
             }
+            ActiveScene = Scenes.FirstOrDefault(x => x.IsActive);
+
+            AddSceneCommand = new RelayCommand<object>(x =>
+            {
+                AddScene($"New Scene {Scenes.Count}");
+                var newScene = Scenes.Last();
+                var newSceneIndex = Scenes.Count - 1;
+
+                HistoryAction.Add(new UndoRedoAction(
+                    () => RemoveScene(newScene),
+                    () => _scenes.Insert(newSceneIndex, newScene),
+                    $"Add Scene: {newScene.Name}"
+                    ));
+            });
+
+            RemoveSceneCommand = new RelayCommand<Scene>(x =>
+            {
+                var sceneIndex = _scenes.IndexOf(x);
+                RemoveScene(x);
+
+                HistoryAction.Add(new UndoRedoAction(
+                    () => _scenes.Insert(sceneIndex, x),
+                    () => RemoveScene(x),
+                    $"Remove Scene: {x.Name}"
+                    ));
+            }, x => !x.IsActive);
+
+            UndoCommand = new RelayCommand<object>(x => HistoryAction.UndoAction());
+            RedoCommand = new RelayCommand<object>(x => HistoryAction.RedoAction());
+
+            SaveCommand = new RelayCommand<object>(x => Save(this));
+
         }
 
         public static HistoryAction HistoryAction { get; } = new HistoryAction();
@@ -115,7 +116,7 @@ namespace PerAsperaEditor.GameProject
 
         public void RemoveScene(Scene scene)
         {
-            Debug.Assert(scene != null && _scenes.Contains(scene));  
+            Debug.Assert(scene != null && _scenes.Contains(scene));
             _scenes.Remove(scene);
         }
 

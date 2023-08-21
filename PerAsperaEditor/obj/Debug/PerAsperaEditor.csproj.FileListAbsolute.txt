@@ -37,3 +37,5 @@ D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\ProjectLayoutView.g.c
 D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\ProjectLayoutView.baml
 D:\PerAspera\PerAsperaEditor\obj\Debug\Utilities\HistoryActionView.g.cs
 D:\PerAspera\PerAsperaEditor\obj\Debug\Utilities\HistoryActionView.baml
+D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\GameEntityView.g.cs
+D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\GameEntityView.baml

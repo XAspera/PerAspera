@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PerAsperaEditor.GameProject;
+using PerAsperaEditor.Components;
 
 namespace PerAsperaEditor.Editors
 {
@@ -26,9 +27,19 @@ namespace PerAsperaEditor.Editors
             InitializeComponent();
         }
 
-        private void OnAddSceneButton_Click(object sender, RoutedEventArgs e)
+        private void OnAddGameEntityButton_Click(object sender, RoutedEventArgs e)
         {
-            var viewModel = DataContext as Project;
+            var viewModel = (sender as Button).DataContext as Scene;
+            viewModel.AddGameEntityCommand.Execute(new GameEntity(viewModel) { Name = "Empty Game Entity"});
+        }
+
+        private void OnGameEntities_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GameEntityView.Instance.DataContext = null;
+            if(e.AddedItems.Count > 0)
+            {
+                GameEntityView.Instance.DataContext = (sender as ListBox).SelectedItems[0];
+            }
         }
     }
 }
