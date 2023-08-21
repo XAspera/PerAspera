@@ -49,11 +49,6 @@ namespace PerAsperaEditor.GameProject
                     }
                 }
             }
-
-            foreach(var project in _projects)
-            {
-                Console.WriteLine(project.Project.ProjectName);
-            }
         }
 
         private static void WriteProjectData()

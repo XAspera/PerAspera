@@ -22,7 +22,7 @@ namespace PerAsperaEditor.GameProject
         [DataMember]
         public string ProjectPath { get; private set; }
 
-        public string FullPath => $"{ProjectPath}{ProjectName}{Extension}";
+        public string FullPath => $@"{ProjectPath}{ProjectName}\{ProjectName}{Extension}";
 
         [DataMember(Name = "Scenes")]
         private ObservableCollection<Scene> _scenes = new ObservableCollection<Scene>();
@@ -66,51 +66,54 @@ namespace PerAsperaEditor.GameProject
 
                 ActiveScene = Scenes.FirstOrDefault(x => x.IsActive);
 
-                AddScene = new RelayCommand<object>(x =>
+                AddSceneCommand = new RelayCommand<object>(x =>
                 {
-                    AddSceneInternal($"New Scene {Scenes.Count}");
+                    AddScene($"New Scene {Scenes.Count}");
                     var newScene = Scenes.Last();
                     var newSceneIndex = Scenes.Count - 1;
 
                     HistoryAction.Add(new UndoRedoAction(
-                        () => RemoveSceneInternal(newScene),
+                        () => RemoveScene(newScene),
                         () => _scenes.Insert(newSceneIndex, newScene),
                         $"Add Scene: {newScene.Name}"
                         ));
                 });
 
-                RemoveScene = new RelayCommand<Scene>(x =>
+                RemoveSceneCommand = new RelayCommand<Scene>(x =>
                 {
                     var sceneIndex = _scenes.IndexOf(x);
-                    RemoveSceneInternal(x);
+                    RemoveScene(x);
 
                     HistoryAction.Add(new UndoRedoAction(
                         () => _scenes.Insert(sceneIndex, x),
-                        () => RemoveSceneInternal(x),
+                        () => RemoveScene(x),
                         $"Remove Scene: {x.Name}"
                         ));
                 }, x => !x.IsActive);
 
-                Undo = new RelayCommand<object>(x => HistoryAction.UndoAction());
-                Redo = new RelayCommand<object>(x => HistoryAction.RedoAction());
+                UndoCommand = new RelayCommand<object>(x => HistoryAction.UndoAction());
+                RedoCommand = new RelayCommand<object>(x => HistoryAction.RedoAction());
+
+                SaveCommand = new RelayCommand<object>(x => Save(this));
             }
         }
 
         public static HistoryAction HistoryAction { get; } = new HistoryAction();
 
-        public ICommand Undo { get; private set; }
-        public ICommand Redo { get; private set; }
+        public ICommand UndoCommand { get; private set; }
+        public ICommand RedoCommand { get; private set; }
 
-        public ICommand AddScene { get; private set; }
-        public ICommand RemoveScene { get; private set; }
+        public ICommand AddSceneCommand { get; private set; }
+        public ICommand RemoveSceneCommand { get; private set; }
+        public ICommand SaveCommand { get; private set; }
 
-        public void AddSceneInternal(string sceneName)
+        public void AddScene(string sceneName)
         {
             Debug.Assert(!string.IsNullOrEmpty(sceneName));
             _scenes.Add(new Scene(this, sceneName));
         }
 
-        public void RemoveSceneInternal(Scene scene)
+        public void RemoveScene(Scene scene)
         {
             Debug.Assert(scene != null && _scenes.Contains(scene));  
             _scenes.Remove(scene);

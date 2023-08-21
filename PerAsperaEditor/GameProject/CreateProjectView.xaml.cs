@@ -28,7 +28,7 @@ namespace PerAsperaEditor.GameProject
             if(!string.IsNullOrEmpty(projectPath))
             {
                 dialogResult = true;
-                var project = OpenProject.Open(new ProjectData() { Date = DateTime.Now, Project = new Project(viewModel.ProjectName, projectPath) });
+                var project = OpenProject.Open(new ProjectData() { Date = DateTime.Now, Project = new Project(viewModel.ProjectName, viewModel.ProjectPath) });
                 win.DataContext = project;
             }
             win.DialogResult = dialogResult;

@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\PerAspera\PerAsperaEditor\App.xaml
 7-779176903
 
-20-903828724
+21-1940579075
 194726069201
 Editors\WorldEditor\ProjectLayoutView.xaml;Editors\WorldEditor\WorldEditorView.xaml;GameProject\CreateProjectView.xaml;GameProject\OpenProjectView.xaml;GameProject\ProjectBrowserDialog.xaml;MainWindow.xaml;Utilities\HistoryActionView.xaml;
 
-True
+False
 

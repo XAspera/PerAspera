@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PerAsperaEditor.GameProject;
 
 namespace PerAsperaEditor.Editors
 {
@@ -23,6 +25,14 @@ namespace PerAsperaEditor.Editors
         public WorldEditorView()
         {
             InitializeComponent();
+            Loaded += OnWorldEditorView_Loaded;
+        }
+
+        private void OnWorldEditorView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnWorldEditorView_Loaded;
+            Focus();
+            ((INotifyCollectionChanged)Project.HistoryAction.UndoList).CollectionChanged += (s, e) => Focus();
         }
     }
 }
