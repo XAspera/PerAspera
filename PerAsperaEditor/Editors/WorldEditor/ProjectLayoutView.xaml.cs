@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PerAsperaEditor.GameProject;
 using PerAsperaEditor.Components;
+using PerAsperaEditor.Utilities;
 
 namespace PerAsperaEditor.Editors
 {
@@ -30,16 +31,35 @@ namespace PerAsperaEditor.Editors
         private void OnAddGameEntityButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = (sender as Button).DataContext as Scene;
-            viewModel.AddGameEntityCommand.Execute(new GameEntity(viewModel) { Name = "Empty Game Entity"});
+            viewModel.AddGameEntityCommand.Execute(new GameEntity(viewModel) { Name = "Empty Game Entity" });
         }
 
         private void OnGameEntities_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GameEntityView.Instance.DataContext = null;
-            if(e.AddedItems.Count > 0)
+            var listBox = sender as ListBox;
+
+            if (e.AddedItems.Count > 0)
             {
                 GameEntityView.Instance.DataContext = (sender as ListBox).SelectedItems[0];
             }
+
+            var newSelection = listBox.SelectedItems.Cast<GameEntity>().ToList();
+            var previousSelection = newSelection.Except(e.AddedItems.Cast<GameEntity>()).Concat(e.RemovedItems.Cast<GameEntity>()).ToList();
+
+            Project.HistoryAction.Add(new UndoRedoAction(
+                () =>
+                {
+                    listBox.UnselectAll();
+                    previousSelection.ForEach(x => (listBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                () =>
+                {
+                    listBox.UnselectAll();
+                    newSelection.ForEach(x => (listBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                "Selection Changed"
+                ));
         }
     }
 }

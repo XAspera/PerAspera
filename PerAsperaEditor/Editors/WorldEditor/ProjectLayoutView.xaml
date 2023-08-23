@@ -44,12 +44,15 @@
                                      SelectionChanged="OnGameEntities_ListBox_SelectionChanged">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="500"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
                                             <Button Content="Remove" Command="{Binding ParentScene.RemoveGameEntityCommand}"
-                                                    CommandParameter="{Binding}"
-                                                    Margin="20,0,0,0"/> 
-                                        </StackPanel>
+                                                    CommandParameter="{Binding}" Margin="20,0,0,0" Grid.Column="1"/>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
