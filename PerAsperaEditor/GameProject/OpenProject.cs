@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 
 namespace PerAsperaEditor.GameProject
 {
@@ -89,7 +90,8 @@ namespace PerAsperaEditor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: set a proper log
+                Logger.Log(MessageType.Error, $"Failed to read project data");
+                throw;
             }
         }
     }

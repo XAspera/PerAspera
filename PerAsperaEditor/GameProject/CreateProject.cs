@@ -127,8 +127,8 @@ namespace PerAsperaEditor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: set a proper log
-                return string.Empty;
+                Logger.Log(MessageType.Error, $"Failed to create {ProjectName}");
+                throw;
             }
         }
 
@@ -160,7 +160,8 @@ namespace PerAsperaEditor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: set a proper log
+                Logger.Log(MessageType.Error, $"Failed to read project templates");
+                throw;
             }
 
         }

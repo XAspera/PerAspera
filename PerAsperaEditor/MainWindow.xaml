@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PerAsperaEditor"
         xmlns:editors="clr-namespace:PerAsperaEditor.Editors"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="PerAsperaEditor" Height="720" Width="1280">
+        Title="PerAsperaEditor" Height="900" Width="1600">
     <Grid>
         <editors:WorldEditorView/>
     </Grid>

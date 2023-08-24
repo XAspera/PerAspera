@@ -24,7 +24,7 @@ namespace PerAsperaEditor
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
         {
             Loaded -= OnMainWindowLoaded;
-            //Hide();
+            Hide();
             OpenProjectBrowserDialog();
         }
 
@@ -45,6 +45,7 @@ namespace PerAsperaEditor
             {
                 Project.Current?.Unload();
                 DataContext = projectBrowser.DataContext;
+                Show();
             }
         }
     }

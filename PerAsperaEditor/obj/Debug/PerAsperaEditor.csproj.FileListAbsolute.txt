@@ -42,3 +42,5 @@ D:\PerAspera\PerAsperaEditor\obj\Debug\Editors\WorldEditor\GameEntityView.baml
 D:\PerAspera\PerAsperaEditor\obj\Debug\Dictionaries\ControlTemplate.baml
 D:\PerAspera\PerAsperaEditor\obj\Debug\Dictionaries\ControlTemplate.g.cs
 D:\PerAspera\PerAsperaEditor\obj\Debug\App.baml
+D:\PerAspera\PerAsperaEditor\obj\Debug\Utilities\LoggerView.g.cs
+D:\PerAspera\PerAsperaEditor\obj\Debug\Utilities\LoggerView.baml

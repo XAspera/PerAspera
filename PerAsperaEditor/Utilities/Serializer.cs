@@ -22,7 +22,8 @@ namespace PerAsperaEditor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: set a proper log
+                Logger.Log(MessageType.Error, $"Failed to serialized {obj} to {path}");
+                throw;
             }
         }
 
@@ -38,8 +39,8 @@ namespace PerAsperaEditor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                // TODO: set a proper log
-                return default (T);
+                Logger.Log(MessageType.Error, $"Failed to deserialized {path}");
+                throw;
             }
         }
     }

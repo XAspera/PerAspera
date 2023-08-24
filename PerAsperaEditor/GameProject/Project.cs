@@ -50,11 +50,15 @@ namespace PerAsperaEditor.GameProject
             return Serializer.FromFile<Project>(filePath);
         }
 
-        public void Unload() { }
+        public void Unload()
+        {
+            HistoryAction.Reset();
+        }
 
         public static void Save(Project project)
         {
             Serializer.ToFile(project, project.FullPath);
+            Logger.Log(MessageType.Info, $"Saved project to {project.FullPath}");
         }
 
         [OnDeserialized]
