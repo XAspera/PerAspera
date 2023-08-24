@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 namespace PerAsperaEditor.GameProject
 {
     [DataContract]
-    public class ProjectData
+    class ProjectData
     {
         [DataMember]
         public Project Project { get; set; }
@@ -23,13 +23,13 @@ namespace PerAsperaEditor.GameProject
     }
 
     [DataContract]
-    public class ProjectDataList
+    class ProjectDataList
     {
         [DataMember]
         public List<ProjectData> Projects { get; set; }
     }
 
-    public class OpenProject : ViewModelBase
+    class OpenProject : ViewModelBase
     {
         private static readonly string _applicationDataPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\PerAsperaEditor\";
         private static readonly string _projectDataPath;

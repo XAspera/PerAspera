@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace PerAsperaEditor.Components
 {
+    interface IMSComponent { }
+
+
     [DataContract]
-    public class Component : ViewModelBase
+    abstract class Component : ViewModelBase
     {
         [DataMember]
         public GameEntity Owner { get; set; }
@@ -19,5 +22,10 @@ namespace PerAsperaEditor.Components
             Debug.Assert(owner != null);
             Owner = owner;
         }
+    }
+
+    abstract class MSComponent<T> : ViewModelBase, IMSComponent where T : Component
+    {
+
     }
 }
