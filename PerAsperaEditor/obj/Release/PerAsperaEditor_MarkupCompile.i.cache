@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 D:\PerAspera\PerAsperaEditor\App.xaml
-11407045341
+102121672857
 
-51749692681
+281114146980
 194726069201
-MainWindow.xaml;
+Dictionaries\ControlTemplate.xaml;Editors\WorldEditor\GameEntityView.xaml;Editors\WorldEditor\ProjectLayoutView.xaml;Editors\WorldEditor\WorldEditorView.xaml;GameProject\CreateProjectView.xaml;GameProject\OpenProjectView.xaml;GameProject\ProjectBrowserDialog.xaml;MainWindow.xaml;Utilities\HistoryActionView.xaml;Utilities\LoggerView.xaml;
 
 False
 
