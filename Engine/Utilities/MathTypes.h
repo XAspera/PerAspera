@@ -21,6 +21,6 @@ namespace perAspera::math {
 	using s32v4 = DirectX::XMINT4;
 	using m3x3 = DirectX::XMFLOAT3X3;
 	using m4x4 = DirectX::XMFLOAT4X4;
-	using m4x4 = DirectX::XMFLOAT4X4A;
+	using m4x4a = DirectX::XMFLOAT4X4A;
 #endif
 }

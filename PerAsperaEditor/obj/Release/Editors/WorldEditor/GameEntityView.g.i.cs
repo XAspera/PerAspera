@@ -62,7 +62,7 @@ namespace PerAsperaEditor.Editors {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PerAsperaEditor;V1.0.0.0;component/editors/worldeditor/gameentityview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PerAsperaEditor;component/editors/worldeditor/gameentityview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Editors\WorldEditor\GameEntityView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

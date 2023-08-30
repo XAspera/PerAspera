@@ -61,7 +61,7 @@ namespace PerAsperaEditor.GameProject {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PerAsperaEditor;V1.0.0.0;component/gameproject/createprojectview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PerAsperaEditor;component/gameproject/createprojectview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\GameProject\CreateProjectView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
