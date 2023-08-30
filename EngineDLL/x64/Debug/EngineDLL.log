@@ -1,0 +1,7 @@
+﻿  dllmain.cpp
+D:\PerAspera\EngineDLL\dllmain.cpp(10,31): warning C4100: 'lpReserved': unreferenced formal parameter
+D:\PerAspera\EngineDLL\dllmain.cpp(8,32): warning C4100: 'hModule': unreferenced formal parameter
+  EngineAPI.cpp
+  Generating Code...
+     Creating library D:\PerAspera\x64\Debug\EngineDLL.lib and object D:\PerAspera\x64\Debug\EngineDLL.exp
+  EngineDLL.vcxproj -> D:\PerAspera\x64\Debug\EngineDLL.dll

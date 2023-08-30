@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PerAsperaEditor": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
